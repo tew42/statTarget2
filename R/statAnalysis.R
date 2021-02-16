@@ -234,7 +234,16 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
     if (glog) {
         # glog trans
         x <- read.csv(normfile, header = TRUE)
-        GloggedSmpd <- glog(x[, 3:ncol(x)], 2)
+        
+        GlogHelp <- list()
+        GlogHelp$class <- x[,2]
+        
+        GlogEstimator <- LMGene::neweS(t(as.matrix((x[, 3:ncol(x)])),GlogHelp)
+        GlogParams <- LMGene::tranest(GlogEstimator, method = 3)
+
+        GloggedSmpd <- glog(((x[, 3:ncol(x)]) - GlogParams$alpha), GlogParams$lambda)
+        
+        #GloggedSmpd <- glog(x[, 3:ncol(x)], 2)
         sdv <- apply(GloggedSmpd, 2, sd)
         meanI <- apply(GloggedSmpd, 2, mean)
         logvarI <- data.frame(meanI, sdv)
