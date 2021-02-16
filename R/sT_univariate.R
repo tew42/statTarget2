@@ -1,9 +1,19 @@
-sT_univariate <- function(file, FDR = FDR, plot.volcano, upper.lim, lower.lim, sig.lim, save.boxplot) {
+sT_univariate <- function(scaling, FDR = FDR, plot.volcano, upper.lim, lower.lim, sig.lim, save.boxplot) {
+    #sT_univariate <- function(file, FDR = FDR, plot.volcano, upper.lim, lower.lim, sig.lim, save.boxplot) {
     dirout.uni = paste(getwd(), "/Univariate/", sep = "")
     dir.create(dirout.uni)
-    comp = read.csv(file, sep = ",", header = TRUE)
-    comp.x = comp[, 3:ncol(comp)]
-    comp.x = cbind(comp[, 2], comp[, 1], comp.x)
+    
+    pwd.x = paste(getwd(), "/scaleData_", scaling, "/ProcessedTable.csv", sep = "")
+    comp = read.csv(pwd.x, header = TRUE)
+    pwdK = paste(getwd(), "/scaleData_", scaling, "/class.csv", sep = "")
+    comp.k = read.csv(pwdK, header = TRUE)
+    comp.k = matrix(comp.k[, -1], ncol = 1)
+    comp.x = comp[, 2:ncol(comp)]
+    comp.x = cbind(comp.k, comp[, 1], comp.x)
+
+    #comp = read.csv(file, sep = ",", header = TRUE)
+    #comp.x = comp[, 3:ncol(comp)]
+    #comp.x = cbind(comp[, 2], comp[, 1], comp.x)
     pwdfile = paste(getwd(), "/Univariate/DataTable.csv", sep = "")
     write.csv(comp.x, pwdfile, row.names = FALSE)
     
