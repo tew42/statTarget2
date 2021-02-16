@@ -238,7 +238,7 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
         GlogHelp <- list()
         GlogHelp$class <- x[,2]
         
-        GlogEstimator <- LMGene::neweS(t(as.matrix((x[, 3:ncol(x)])),GlogHelp)
+        GlogEstimator <- LMGene::neweS(t(as.matrix(x[, 3:ncol(x)])),GlogHelp)
         GlogParams <- LMGene::tranest(GlogEstimator, method = 3)
 
         GloggedSmpd <- glog(((x[, 3:ncol(x)]) - GlogParams$alpha), GlogParams$lambda)
