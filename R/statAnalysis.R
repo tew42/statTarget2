@@ -296,7 +296,7 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
         
         cat("\n")
         cat("* Step 7: Univariate Test Start...! Time: ", date(), "\n")
-        log = sT_univariate(logfile, FDR = FDR, upper.lim = upper.lim, lower.lim = lower.lim, sig.lim = sig.lim,plot.volcano = plot.volcano, save.boxplot = save.boxplot)
+        log = sT_univariate(scaling = scaling, FDR = FDR, upper.lim = upper.lim, lower.lim = lower.lim, sig.lim = sig.lim,plot.volcano = plot.volcano, save.boxplot = save.boxplot)
     } else {
         setwd("./statTarget/statAnalysis/")
         cat("\n", "Step 5: PCA-PLSDA start... Time: ", date(), "\n")
@@ -314,7 +314,7 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
         
         cat("\n")
         cat("* Step 7: Univariate Test Start...! Time: ", date(), "\n")
-        log = sT_univariate(normfile, FDR = FDR, upper.lim = upper.lim, lower.lim = lower.lim, sig.lim = sig.lim, plot.volcano = plot.volcano, save.boxplot = save.boxplot)
+        log = sT_univariate(scaling = scaling, FDR = FDR, upper.lim = upper.lim, lower.lim = lower.lim, sig.lim = sig.lim, plot.volcano = plot.volcano, save.boxplot = save.boxplot)
     }
     cat("\n", "Output Link:", getwd(), "\n")
     cat("\n", "Statistical Analysis Finished! Time: ", date(), "\n")
