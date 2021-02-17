@@ -17,6 +17,8 @@ sT_univariate <- function(scaling, FDR = FDR, plot.volcano, upper.lim, lower.lim
     pwdfile = paste(getwd(), "/Univariate/DataTable.csv", sep = "")
     write.csv(comp.x, pwdfile, row.names = FALSE)
     
+    bStatX(pwdfile)
+    
     # cal min no. of levels
     checkNum <- min(summary(as.factor(comp.x[,1])))
     
