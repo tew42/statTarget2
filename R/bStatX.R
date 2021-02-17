@@ -2,12 +2,12 @@
 ### descriptions includes mean value, median value, sum, quartile, standard derivatives, etc.  file
 ### The file with the expression information.  A matrix for data description bStatX(file)
 bStatX <- function(file) {
-    xr <- read.csv(file, sep=',', header=TRUE)
+    x.nn <- read.csv(file, sep=',', header=TRUE)
     #xr = file
 
     #xs = xr[, 3:ncol(xr)]
     #x = cbind(xr[, 2], xr[, 1], xs)
-    x.nn = x
+    #x.nn = x
     sorted = x.nn[order(x.nn[, 1]), ]
     g = c()
     for (i in 1:nrow(sorted)) {
