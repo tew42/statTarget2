@@ -39,8 +39,8 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 
                 I = read.csv(pwdi, header = TRUE)
                 J = read.csv(pwdj, header = TRUE)
-                mI = I[, "Mean"]
-                mJ = J[, "Mean"]
+                mI = I[, "Median"]
+                mJ = J[, "Median"]
                 
                 FC = matrix(abs(mI/mJ), ncol = 1)
                 rownames(FC) = I[, 1]
