@@ -213,8 +213,8 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
     write.csv(cbind(imdatF[, 1:2], inputedData), prefile, row.names = FALSE)
     
     # Summary statistics
-    imdatStat <- TraceFc(imdatF)
-    bStatX(imdatStat)
+    #imdatStat <- TraceFc(imdatF)
+    #bStatX(imdatStat)
     
     ############## Normalization #################
     cat("\n", "* Step 4: Normalization start... Time: ", date(), "\n")
