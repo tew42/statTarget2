@@ -17,9 +17,9 @@ bStatX <- function(file) {
             g = matrix(c(g, as.numeric(sorted[i, 1])), ncol = 1)
         }
     }
-    dirout.g = paste(getwd(), "/statTarget/statAnalysis/tmp", sep = "")
+    dirout.g = paste(getwd(), "/tmp", sep = "")
     dir.create(dirout.g)
-    slink = paste(getwd(), "/statTarget/statAnalysis/DataPretreatment", "/slink.csv", sep = "")
+    slink = paste(getwd(), "/DataPretreatment", "/slink.csv", sep = "")
     slink = read.csv(slink, header = TRUE)
     for (i in 1:nrow(g)) {
         vuota <- c()
@@ -40,12 +40,12 @@ bStatX <- function(file) {
         outputfileg = paste("r.", ExcName(i, slink), ".csv", sep = "")
         write.csv(name, paste(dirout.g, outputfileg, sep = "/"), row.names = FALSE)
     }
-    dirout.w = paste(getwd(), "/statTarget/statAnalysis/dataSummary", sep = "")
+    dirout.w = paste(getwd(), "/dataSummary", sep = "")
     dir.create(dirout.w)
     NoF = nrow(g)
     for (i in 1:NoF) {
         ni = paste("r.", ExcName(i, slink), ".csv", sep = "")
-        pwdi = paste(getwd(), "/statTarget/statAnalysis/tmp/", ni, sep = "")
+        pwdi = paste(getwd(), "/tmp/", ni, sep = "")
         I = read.csv(pwdi, header = TRUE)
         I = I[, -1]
         bS = bStat(I)
