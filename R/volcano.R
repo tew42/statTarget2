@@ -42,7 +42,7 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 mI = I[, "Median"]
                 mJ = J[, "Median"]
                 
-                FC = matrix(abs(mI/mJ), ncol = 1)
+                FC = matrix((mI-mJ), ncol = 1)
                 rownames(FC) = I[, 1]
                 colnames(FC) <- "foldChanges"
                 fc.csvfile = paste("Fold_Change_", ExcName(i, slink), "-to-", ExcName(j, slink), ".csv", 
@@ -52,7 +52,7 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 if("pvalue" %in% colnames(PV)) adjCheck <- "pvalue" else adjCheck <- "adjust.pvalue"
                 PV = matrix(PV[, -1], ncol = 1)
                 PV[is.na(PV)] <- 1
-                logfc = log2(FC)
+                #logfc = log2(FC)
                 # logfc = glog(FC,2)
                 logpv = -log10(PV)
                 # logfc = FC
