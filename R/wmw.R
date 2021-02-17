@@ -36,13 +36,17 @@ wmw <- function(file) {
                 J = J[, -1]
                 fin = ncol(sorted) - 1
                 # perform WMW test for the effective combinations and extract p-values
-                wilx.pv <- matrix(rep(NA, fin))
+                #wilx.pv <- matrix(rep(NA, fin))
+                wilx.pv <- matrix(rep(NA, fin*2), ncol = 2)
                 for (q in 1:fin) {
-                  wilx.pv[q, ] <- wilcox.test(I[, q], J[, q], paired = FALSE, exact = NULL, correct = FALSE, 
-                    conf.level = 0.95, alternative = "two.sided")$p.value
+                  #wilx.pv[q, ] <- wilcox.test(I[, q], J[, q], paired = FALSE, exact = NULL, correct = FALSE, 
+                  #  conf.level = 0.95, alternative = "two.sided")$p.value
+                  tempwt <- wilcox.test(I[, q], J[, q], paired = FALSE, exact = NULL, correct = FALSE, conf.level = 0.95, alternative = "two.sided")
+                  wilx.pv[q, ] <- c(tempwt$p.value,tempwt$statistic)
                 }
                 rownames(wilx.pv) <- colnames(x.x)
-                colnames(wilx.pv) <- c("pvalue")
+                colnames(wilx.pv) <- c("pvalue","statistic")
+                #colnames(wilx.pv) <- c("pvalue")
                 
                 wmw.ij.pv = paste("WMWTest_pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), 
                   ".csv", sep = "")
