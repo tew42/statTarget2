@@ -35,16 +35,21 @@ welch <- function(file) {
                 I = I[, -1]
                 J = J[, -1]
                 fin = ncol(sorted) - 1
-                we <- matrix(rep(NA, fin))
+                #we <- matrix(rep(NA, fin))
+                we <- matrix(rep(NA, fin),ncol=2)
                 for (q in 1:fin) {
                   if (sd(I[, q]) == 0 & sd(J[, q]) == 0) {
-                    we[q, ] == 1
+                    #we[q, ] == 1
+                    we[q, ] == c(1,0)
                   } else {
-                    we[q, ] <- t.test(I[, q], J[, q], var.equal = FALSE, conf.level = 0.95, alternative = "two.sided")$p.value
+                    #we[q, ] <- t.test(I[, q], J[, q], var.equal = FALSE, conf.level = 0.95, alternative = "two.sided")$p.value
+                    tempwt <- t.test(I[, q], J[, q], var.equal = FALSE, conf.level = 0.95, alternative = "two.sided")
+                    we[q, ] <- c(tempwt$p.value,tempwt$statistic)
                   }
                 }
                 rownames(we) <- colnames(I)
-                colnames(we) <- c("pvalue")
+                #colnames(we) <- c("pvalue")
+                colnames(we) <- c("pvalue","statistic")
                 welch.ij = paste("WelchTest_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
                   sep = "")
                 assign(welch.ij, we)
