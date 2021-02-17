@@ -36,7 +36,7 @@ welch <- function(file) {
                 J = J[, -1]
                 fin = ncol(sorted) - 1
                 #we <- matrix(rep(NA, fin))
-                we <- matrix(rep(NA, fin),ncol=2)
+                we <- matrix(rep(NA, fin*2),ncol=2)
                 for (q in 1:fin) {
                   if (sd(I[, q]) == 0 & sd(J[, q]) == 0) {
                     #we[q, ] == 1
