@@ -48,7 +48,7 @@
 #' @author Hemi Luan, hemi.luan@gmail.com
 #' @export
 #' @keywords PCA PLSDA P-value 
-statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glog = TRUE, FDR = TRUE, 
+statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glog = TRUE, glambda = c(0,2), FDR = TRUE, 
     ntree = 500, nvarRF = 5, scaling = "Pareto", plot.volcano = TRUE, save.boxplot =FALSE,silt = 20, pcax = 1, pcay = 2, Labels = TRUE, upper.lim = 2, 
     lower.lim = 0.5, sig.lim = 0.05) {
     dirout.uni = paste(getwd(), "/statTarget/", sep = "")
@@ -234,14 +234,8 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
     if (glog) {
         # glog trans
         x <- read.csv(normfile, header = TRUE)
-        
-        GlogHelp <- list()
-        GlogHelp$class <- x[,2]
-        
-        GlogEstimator <- LMGene::neweS(t(as.matrix(x[, 3:ncol(x)])),GlogHelp)
-        GlogParams <- LMGene::tranest(GlogEstimator, method = 3)
 
-        GloggedSmpd <- glog(((x[, 3:ncol(x)]) - GlogParams$alpha), GlogParams$lambda)
+        GloggedSmpd <- glog(((x[, 3:ncol(x)]) - glambda[1]), glambda[2])
         
         #GloggedSmpd <- glog(x[, 3:ncol(x)], 2)
         sdv <- apply(GloggedSmpd, 2, sd)
