@@ -44,13 +44,13 @@ pvalues <- function(file, fdr) {
                   sep = "")
                 welch.pwdij = paste(getwd(), "/Univariate/WelchTest/", welchij, sep = "")
                 Wij = read.csv(welch.pwdij, header = TRUE)
-                Wij = matrix(Wij[, -1], ncol = 1)
+                Wij = matrix(Wij[, 2], ncol = 1)
                 Wij[is.na(Wij)] <- 1
                 wmwp = paste("WMWTest_pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
                   sep = "")
                 wmw.pwd = paste(getwd(), "/Univariate/MannWhitneyTests/", wmwp, sep = "")
                 WMWp = read.csv(wmw.pwd, header = TRUE)
-                WMWp = matrix(WMWp[, -1], ncol = 1)
+                WMWp = matrix(WMWp[, 2], ncol = 1)
                 WMWp[is.na(WMWp)] <- 1
                 
                 fin = ncol(sorted) - 1
