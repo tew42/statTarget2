@@ -55,7 +55,7 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 #logfc = log2(FC)
                 # logfc = glog(FC,2)
                 logpv = -log10(PV)
-                # logfc = FC
+                logfc = FC
                 
                 upper <- log2(upper.lim)
                 lower <- log2(lower.lim)
