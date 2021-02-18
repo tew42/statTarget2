@@ -84,7 +84,7 @@ oddRatio <- function(file) {
                 })
                 or <- as.data.frame(t(or))
                 # write.table(or,'odds_radio.txt',sep='\t',quote=F)
-                or.ij = paste("odds_of_", ExcName(i, slink), "to", ExcName(j, slink), ".csv", sep = "")
+                or.ij = paste("odds_of_", ExcName(i, slink), "-to-", ExcName(j, slink), ".csv", sep = "")
                 assign(or.ij, or)
                 write.csv(or, paste(dirout.w, or.ij, sep = "/"))
             }
