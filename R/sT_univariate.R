@@ -35,7 +35,7 @@ sT_univariate <- function(scaling, FDR = FDR, plot.volcano, upper.lim, lower.lim
     cat("\n", "Odd.Ratio Calculating...", "\n")
     oddRatio(pwdfile)
     
-    if(checkNum <= 5) {
+    if(checkNum <= 10) {
       cat("\n", "*ROC analysis skipped", "\n")
     } else {
     cat("\n", "ROC Calculating...", "\n")
