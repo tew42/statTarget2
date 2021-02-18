@@ -40,13 +40,13 @@ pvalues <- function(file, fdr) {
                 Sj = read.csv(shap.pwdj, header = TRUE)
                 Si = matrix(Si[, -1], ncol = 1)
                 Sj = matrix(Sj[, -1], ncol = 1)
-                welchij = paste("WelchTest_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
+                welchij = paste("WelchTest_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", 
                   sep = "")
                 welch.pwdij = paste(getwd(), "/Univariate/WelchTest/", welchij, sep = "")
                 Wij = read.csv(welch.pwdij, header = TRUE)
                 Wij = matrix(Wij[, 2], ncol = 1)
                 Wij[is.na(Wij)] <- 1
-                wmwp = paste("WMWTest_pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
+                wmwp = paste("WMWTest_pvalues_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", 
                   sep = "")
                 wmw.pwd = paste(getwd(), "/Univariate/MannWhitneyTests/", wmwp, sep = "")
                 WMWp = read.csv(wmw.pwd, header = TRUE)
@@ -66,7 +66,7 @@ pvalues <- function(file, fdr) {
                   pval.corr = matrix(p.adjust(pvalues, method = c("BH"), n = nrow(pvalues)), ncol = 1)
                   rownames(pval.corr) = colnames(x.x)
                   colnames(pval.corr) <- c("adjusted.pvalue")
-                  pvalfin = paste("Pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
+                  pvalfin = paste("Pvalues_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", 
                     sep = "")
                   assign(pvalfin, pval.corr)
                   write.csv(pval.corr, paste(dirout.pv, pvalfin, sep = ""))
@@ -77,14 +77,14 @@ pvalues <- function(file, fdr) {
                     }
                   }
                   #colnames(sign) <- c("adjusted.pvalue")
-                  signnam = paste("Significant_Variables_", ExcName(i, slink), "vs", ExcName(j, slink), 
+                  signnam = paste("Significant_Variables_", ExcName(i, slink), "-invs-", ExcName(j, slink), 
                     ".csv", sep = "")
                   assign(signnam, sign)
                   write.csv(sign, paste(dirout.sign, signnam, sep = ""), row.names = FALSE)
                 } else {
                   colnames(pvalues) <- c("pvalue")
                   rownames(pvalues) = colnames(x.x)
-                  pvalfin = paste("Pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
+                  pvalfin = paste("Pvalues_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", 
                     sep = "")
                   assign(pvalfin, pvalues)
                   write.csv(pvalues, paste(dirout.pv, pvalfin, sep = ""))
@@ -95,7 +95,7 @@ pvalues <- function(file, fdr) {
                     }
                   }
                   #colnames(sign) <- c("pvalue")
-                  signnam = paste("Significant_Variables_", ExcName(i, slink), "vs", ExcName(j, slink), 
+                  signnam = paste("Significant_Variables_", ExcName(i, slink), "-invs-", ExcName(j, slink), 
                     ".csv", sep = "")
                   assign(signnam, sign)
                   write.csv(sign, paste(dirout.sign, signnam, sep = ""), row.names = FALSE)
