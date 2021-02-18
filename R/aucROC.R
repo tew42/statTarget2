@@ -70,7 +70,7 @@ aucROC <- function(file) {
                 myroc <- as.data.frame(myroc)
                 colnames(myroc) = c("AUC")
                 
-                myroc.ij = paste("auc_roc_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", sep = "")
+                myroc.ij = paste("auc_roc_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", sep = "")
                 assign(myroc.ij, myroc)
                 write.csv(myroc, paste(dirout.w, myroc.ij, sep = "/"))
                 # setTxtProgressBar(pb, i)
