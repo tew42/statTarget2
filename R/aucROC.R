@@ -45,10 +45,10 @@ aucROC <- function(file) {
                 colnames(Jlf) = c("lf")
                 I = cbind(Ilf, I)
                 J = cbind(Jlf, J)
-                IJ = rbind(I, J)
+                IJ = rbind(J, I)
                 IJM <- as.matrix(IJ[, 2:ncol(IJ)])
                 outf <- as.factor(IJ[, 1])
-                # message(paste('*Group.', ExcName(i,slink), sep = ''), ' Vs.', paste(' Group.', ExcName(j,slink),
+                # message(paste('*Group.', ExcName(j,slink), sep = ''), ' Vs.', paste(' Group.', ExcName(i,slink),
                 # sep = ''))
                 myROC = function(x, y) {
                   roc.obj <- suppressMessages(ROC::rocdemo.sca(y, x, function(x, thresh) ROC::dxrule.sca(x, 
