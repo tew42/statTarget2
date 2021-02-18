@@ -44,13 +44,13 @@ welch <- function(file) {
                   } else {
                     #we[q, ] <- t.test(I[, q], J[, q], var.equal = FALSE, conf.level = 0.95, alternative = "two.sided")$p.value
                     tempwt <- t.test(I[, q], J[, q], var.equal = FALSE, conf.level = 0.95, alternative = "two.sided")
-                    we[q, ] <- c(tempwt$p.value,tempwt$statistic)
+                    we[q, ] <- c(tempwt$p.value,-tempwt$statistic)
                   }
                 }
                 rownames(we) <- colnames(I)
                 #colnames(we) <- c("pvalue")
                 colnames(we) <- c("pvalue","statistic")
-                welch.ij = paste("WelchTest_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", 
+                welch.ij = paste("WelchTest_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", 
                   sep = "")
                 assign(welch.ij, we)
                 write.csv(we, paste(dirout.w, welch.ij, sep = "/"))
