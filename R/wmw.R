@@ -42,13 +42,13 @@ wmw <- function(file) {
                   #wilx.pv[q, ] <- wilcox.test(I[, q], J[, q], paired = FALSE, exact = NULL, correct = FALSE, 
                   #  conf.level = 0.95, alternative = "two.sided")$p.value
                   tempwt <- wilcox.test(I[, q], J[, q], paired = FALSE, exact = NULL, correct = FALSE, conf.level = 0.95, alternative = "two.sided")
-                  wilx.pv[q, ] <- c(tempwt$p.value,tempwt$statistic)
+                  wilx.pv[q, ] <- c(tempwt$p.value,-tempwt$statistic)
                 }
                 rownames(wilx.pv) <- colnames(x.x)
                 colnames(wilx.pv) <- c("pvalue","statistic")
                 #colnames(wilx.pv) <- c("pvalue")
                 
-                wmw.ij.pv = paste("WMWTest_pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), 
+                wmw.ij.pv = paste("WMWTest_pvalues_", ExcName(i, slink), "-invs-", ExcName(j, slink), 
                   ".csv", sep = "")
                 assign(wmw.ij.pv, wilx.pv)
                 write.csv(wilx.pv, paste(dirout.wm, wmw.ij.pv, sep = ""))
