@@ -33,7 +33,7 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 # '/Univariate/Groups/', nj, sep='')
                 pwdi = paste(getwd(), "/dataSummary/", ni, sep = "")
                 pwdj = paste(getwd(), "/dataSummary/", nj, sep = "")
-                pv = paste(getwd(), "/Univariate/Pvalues/Pvalues_", ExcName(i, slink), "vs", ExcName(j, 
+                pv = paste(getwd(), "/Univariate/Pvalues/Pvalues_", ExcName(i, slink), "-invs-", ExcName(j, 
                   slink), ".csv", sep = "")
                 
                 
@@ -76,7 +76,7 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 }
                 
                 max.fc = 1.3 * max((abs(logfc)))
-                V = paste(dirout.vol, "VolcanoPlot_", ExcName(i, slink), "-to-", ExcName(j, slink), 
+                V = paste(dirout.vol, "VolcanoPlot_", ExcName(i, slink), "-under-", ExcName(j, slink), 
                   ".pdf", sep = "")
                 pospv = matrix(rep(NA, nrow(PV)), ncol = 1)
                 for (p in 1:nrow(PV)) {
@@ -121,7 +121,7 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 if (length(colnames(sorted.x)[grep("navy", colpv)]) > 0 | length(colnames(sorted.x)[grep("#D55E00", 
                   colpv)]) > 0) {
                   
-                  Vol_sig = paste(dirout.vol, "VolcanoMarker_", ExcName(i, slink), "-to-", ExcName(j, 
+                  Vol_sig = paste(dirout.vol, "VolcanoMarker_", ExcName(i, slink), "-under-", ExcName(j, 
                     slink), ".csv", sep = "")
                   dirout.name = c(rownames(voldata)[grep("navy", colpv)], rownames(voldata)[grep("#D55E00", 
                     colpv)])
