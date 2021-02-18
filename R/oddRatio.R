@@ -48,7 +48,7 @@ oddRatio <- function(file) {
                 colnames(Jlf) = c("lf")
                 I = cbind(Ilf, I)
                 J = cbind(Jlf, J)
-                IJ = rbind(I, J)
+                IJ = rbind(J, I)
                 # fin = ncol(sorted) - 1 we <- matrix(rep(NA, fin))
                 # odds.radio..........................................................
                 IJM <- as.matrix(IJ[, 2:ncol(IJ)])
@@ -59,7 +59,7 @@ oddRatio <- function(file) {
                     Out <- c(0, 0, 0, 1)
                     names(Out) = c("Odd.radio", "2.5%CI", "97.5%CI", "p.value")
                   } else {
-                    # check the odds of A to B
+                    # check the odds of B to A
                     #outcome <- as.factor(c(rep("A",30),rep("B",28)))
                     
                     levels(outcome)[1] <- "pos" # pos
@@ -84,7 +84,7 @@ oddRatio <- function(file) {
                 })
                 or <- as.data.frame(t(or))
                 # write.table(or,'odds_radio.txt',sep='\t',quote=F)
-                or.ij = paste("odds_of_", ExcName(i, slink), "-to-", ExcName(j, slink), ".csv", sep = "")
+                or.ij = paste("odds_of_", ExcName(i, slink), "-under-", ExcName(j, slink), ".csv", sep = "")
                 assign(or.ij, or)
                 write.csv(or, paste(dirout.w, or.ij, sep = "/"))
             }
