@@ -24,7 +24,7 @@ col_pvalues <- function(file) {
     for (i in 1:NoF) {
         for (j in 1:NoF) {
             if (i < j) {
-                ni = paste("Pvalues_", ExcName(i, slink), "vs", ExcName(j, slink), ".csv", sep = "")
+                ni = paste("Pvalues_", ExcName(i, slink), "-invs-", ExcName(j, slink), ".csv", sep = "")
                 pwdi = paste(getwd(), "/Univariate/Pvalues/", ni, sep = "")
                 I = read.csv(pwdi, header = TRUE)
                 I = matrix(I[, -1])
