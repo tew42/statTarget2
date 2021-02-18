@@ -66,14 +66,14 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
     cat("\n", "Data Link", "\n")
     cat(" statFile:", file, "\n")
     
-    imdat <- dat[, 3:ncol(dat)]
+    #imdat <- dat[, 3:ncol(dat)]
+    imdat <- dat
+    #if (length(imdat[imdat < 0L]) > 0) {
+    #    imdat[imdat < 0L] <- 0L
+    #}
+    #imdat[imdat == 0L] <- NA
     
-    if (length(imdat[imdat < 0L]) > 0) {
-        imdat[imdat < 0L] <- 0L
-    }
-    imdat[imdat == 0L] <- NA
-    
-    imdat <- cbind(dat[, 1:2], imdat)
+    #imdat <- cbind(dat[, 1:2], imdat)
     
     cat("\n", "The number of missing value in Data Profile: ", sum(is.na(imdat)))
     
