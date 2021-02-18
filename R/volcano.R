@@ -42,10 +42,10 @@ volcano <- function(file, upper.lim, lower.lim, sig.lim) {
                 mI = I[, "Median"]
                 mJ = J[, "Median"]
                 
-                FC = matrix((mI-mJ), ncol = 1)
+                FC = matrix((mJ-mI), ncol = 1)
                 rownames(FC) = I[, 1]
                 colnames(FC) <- "foldChanges"
-                fc.csvfile = paste("Fold_Change_", ExcName(i, slink), "-to-", ExcName(j, slink), ".csv", 
+                fc.csvfile = paste("Fold_Change_", ExcName(i, slink), "-under-", ExcName(j, slink), ".csv", 
                   sep = "")
                 write.csv(FC, paste(dirout.fc, fc.csvfile, sep = ""))
                 PV = read.csv(pv, header = TRUE)
