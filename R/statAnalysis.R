@@ -235,7 +235,7 @@ statAnalysis <- function(file, Frule = 0.8, normM = "NONE", imputeM = "KNN", glo
         # glog trans
         x <- read.csv(normfile, header = TRUE)
 
-        GloggedSmpd <- glog(((x[, 3:ncol(x)]) - glambda[1]), glambda[2])
+        GloggedSmpd <- glog(x[, 3:ncol(x)], glambda)
         
         #GloggedSmpd <- glog(x[, 3:ncol(x)], 2)
         sdv <- apply(GloggedSmpd, 2, sd)
