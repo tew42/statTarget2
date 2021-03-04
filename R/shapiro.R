@@ -46,7 +46,7 @@ shapiro <- function(file) {
         for (q in 1:ncol(name)) {
             notAlist = c()
             notAlist = matrix(unlist(name[, q]))
-            if (diff(range(notAlist)) == 0) {
+            if (diff(as.numeric(range(notAlist))) == 0) {
                 shapiro[q, ] = NA
             } else {
                 shapiro[q, ] = shapiro.test(as.numeric(notAlist))$p.value
